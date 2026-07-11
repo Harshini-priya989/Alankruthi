@@ -123,7 +123,6 @@ GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=llama-3.3-70b-versatile
 ```
 
-If you previously used Gemini variables, they can stay in `.env`, but the current AI route ignores them. The active provider is Groq.
 
 The model returns structured JSON with:
 
@@ -134,28 +133,3 @@ The model returns structured JSON with:
 - design notes
 - artisan brief
 - care tip
-
-Interview explanation:
-
-- The Groq API key is never exposed to React. It stays on the Express server.
-- The frontend calls your own `/api/ai/design-suggestion` endpoint.
-- The backend uses Groq's OpenAI-compatible Chat Completions API for text generation.
-- JSON mode plus backend validation is used so the model returns predictable fields that the UI can render.
-- The AI does not place orders automatically; it supports customer and artisan decision-making.
-
-Request flow:
-
-```text
-React Design Assistant form
-  -> POST /api/ai/design-suggestion
-  -> Express validates input
-  -> Express calls Groq with GROQ_API_KEY
-  -> Groq returns JSON text
-  -> Express parses and validates fields
-  -> React renders the design brief
-```
-
-## Resume Summary
-
-Built a full-stack MERN custom embroidery ecommerce platform with JWT authentication, product/category browsing, cart and checkout flows, Cloudinary image uploads, and admin dashboards for managing products, users, orders, payment status, and made-to-order completion timelines.
-"# Alankruthi" 
